@@ -1,20 +1,24 @@
 # Types of dogs and their characteristics
 class Beagle:
+    probability = 0.30
     girth = [41, 6]
     height = [37, 4]
     weight = [10, 2]
 
 class Corgi:
+    probability = 0.21
     girth = [53, 9]
     height = [27, 3]
     weight = [12, 2]
 
 class Husky:
+    probability = 0.14
     girth = [66, 10]
     height = [55, 6]
     weight = [22, 6]
 
 class Poodle:
+    probability = 0.35
     girth = [61, 9]
     height = [52, 7]
     weight = [26, 8]
@@ -37,14 +41,6 @@ class Weight:
     light = [0, 0, 5, 15]
     medium = [5, 15, 20, 40]
     heavy = [20, 40, 100, 100]
-
-# Returns the probability for some dog breed
-def P(breed):
-    if breed == 'beagle': return 0.30
-    if breed == 'corgi': return 0.21
-    if breed == 'husky': return 0.14
-    if breed == 'poodle': return 0.35
-    return 0
 
 # Fuzzy membership function
 def f(x):
