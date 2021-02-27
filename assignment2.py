@@ -51,7 +51,11 @@ def naive_bayes_classifier(input):
 
   # Returns the probability of each class in the order [beagle probability, corgi probability, husky probability, poodle probability]
   def class_probabilities():
-      return ['beagle', 'corgi', 'husky', 'poodle']
+      pBeagle = 0       # P(Beagle | input)
+      pCorgi = 0        # P(Corgi | input)
+      pHusky = 0        # P(Husky | input)
+      pPoodle = 0       # P(Poodle | input)
+      return [pBeagle, pCorgi, pHusky, pPoodle]
 
   # Reurns the most likely class, either "beagle", "corgi", "husky", or "poodle"
   def most_likely_class():
