@@ -29,14 +29,26 @@ def P(breed):
 def naive_bayes_classifier(input):
   # input is a three element list with [girth, height, weight]
 
-  # most_likely_class is a string indicating the most likely class, either "beagle", "corgi", "husky", or "poodle"
-  # class_probabilities is a four element list indicating the probability of each class in the order [beagle probability, corgi probability, husky probability, poodle probability]
+  # Returns the probability of each class in the order [beagle probability, corgi probability, husky probability, poodle probability]
+  def class_probabilities:
+      return ['beagle', 'corgi', 'husky', 'poodle']
+
+  # Reurns the most likely class, either "beagle", "corgi", "husky", or "poodle"
+  def most_likely_class:
+      return 'unimplemented'
+
   return most_likely_class, class_probabilities
 
 
 def fuzzy_classifier(input):
   # input is a three element list with [girth, height, weight]
 
-  # highest_membership_class is a string indicating the highest membership class, either "beagle", "corgi", "husky", or "poodle"
-  # class_memberships is a four element list indicating the membership in each class in the order [beagle probability, corgi probability, husky probability, poodle probability]
+  # Returns the highest membership class, either "beagle", "corgi", "husky", or "poodle"
+  def highest_membership_class:
+      return 'unimplemented'
+
+  # Returns the membership in each class in the order [beagle probability, corgi probability, husky probability, poodle probability]
+  def class_memberships:
+      return ['beagle', 'corgi', 'husky', 'poodle']
+
   return highest_membership_class, class_memberships
