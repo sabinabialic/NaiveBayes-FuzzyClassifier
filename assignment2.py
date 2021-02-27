@@ -46,33 +46,30 @@ class Weight:
 def f(x):
     return 'unimplemented'
 
+# Input is a three element list with [girth, height, weight]
 def naive_bayes_classifier(input):
-  # input is a three element list with [girth, height, weight]
-
-  # Returns the probability of each class in the order [beagle probability, corgi probability, husky probability, poodle probability]
-  def class_probabilities():
+    # Returns the probability of each class in the order [beagle probability, corgi probability, husky probability, poodle probability]
+    def class_probabilities():
       pBeagle = 0       # P(Beagle | input)
       pCorgi = 0        # P(Corgi | input)
       pHusky = 0        # P(Husky | input)
       pPoodle = 0       # P(Poodle | input)
       return [pBeagle, pCorgi, pHusky, pPoodle]
 
-  # Reurns the most likely class, either "beagle", "corgi", "husky", or "poodle"
-  def most_likely_class():
+    # Returns the most likely class, either "beagle", "corgi", "husky", or "poodle"
+    def most_likely_class():
       return 'unimplemented'
 
-  return most_likely_class, class_probabilities
+    return most_likely_class, class_probabilities
 
-
+# Input is a three element list with [girth, height, weight]
 def fuzzy_classifier(input):
-  # input is a three element list with [girth, height, weight]
+    # Returns the highest membership class, either "beagle", "corgi", "husky", or "poodle"
+    def highest_membership_class():
+        return 'unimplemented'
 
-  # Returns the highest membership class, either "beagle", "corgi", "husky", or "poodle"
-  def highest_membership_class():
-      return 'unimplemented'
+    # Returns the membership in each class in the order [beagle probability, corgi probability, husky probability, poodle probability]
+    def class_memberships():
+        return ['beagle', 'corgi', 'husky', 'poodle']
 
-  # Returns the membership in each class in the order [beagle probability, corgi probability, husky probability, poodle probability]
-  def class_memberships():
-      return ['beagle', 'corgi', 'husky', 'poodle']
-
-  return highest_membership_class, class_memberships
+    return highest_membership_class, class_memberships
