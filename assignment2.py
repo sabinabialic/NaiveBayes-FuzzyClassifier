@@ -32,7 +32,7 @@ class Height:
     medium = [25, 40, 50, 60]
     large = [50, 60, 100, 100]
 
-class Height:
+class Weight:
     # classification = [a, b, c, d]
     light = [0, 0, 5, 15]
     medium = [5, 15, 20, 40]
@@ -45,6 +45,10 @@ def P(breed):
     if breed == 'husky': return 0.14
     if breed == 'poodle': return 0.35
     return 0
+
+# Fuzzy membership function
+def f(x):
+    return 'unimplemented'
 
 def naive_bayes_classifier(input):
   # input is a three element list with [girth, height, weight]
