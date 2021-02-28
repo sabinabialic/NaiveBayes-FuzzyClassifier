@@ -1,3 +1,5 @@
+import numpy as np
+
 # Types of dogs and their characteristics
 class Beagle:
     probability = 0.30
