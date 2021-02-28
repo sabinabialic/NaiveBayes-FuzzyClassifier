@@ -1,4 +1,5 @@
 import numpy as np
+import math
 
 # Types of dogs and their characteristics
 class Beagle:
@@ -43,6 +44,17 @@ class Weight:
     light = [0, 0, 5, 15]
     medium = [5, 15, 20, 40]
     heavy = [20, 40, 100, 100]
+
+# Returns the probability of a characteristic for a specified dog breed
+def pCharacteristic(x, mean, sd):
+    # Not sure what x is supposed to be, for now I put it as P(breed)
+    variance = float(sd)**2
+    denom = (2*math.pi*variance)**0.5
+    num = math.exp(-(float(x)-float(mean))**2/(2*variance))
+    return num/denom
+
+# Testing
+#print(pCharacteristic(Beagle.probability, Beagle.girth[0], Beagle.girth[1]))
 
 # Fuzzy membership function
 def f(x):
