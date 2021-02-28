@@ -45,14 +45,23 @@ class Weight:
     medium = [5, 15, 20, 40]
     heavy = [20, 40, 100, 100]
 
+# Returns the Naive Bayes probability for a specified dog breed
+# Work in progress - something is off with the numbers
+def pNaiveBayes(breed, chars):
+    return ((pCharacteristic(chars[0], breed.girth[0], breed.girth[1]))
+         * (pCharacteristic(chars[1], breed.height[0], breed.height[1]))
+         * (pCharacteristic(chars[2], breed.weight[0], breed.weight[1]))
+         * breed.probability)
+# Testing
+#print (pNaiveBayes(Beagle, [59, 32, 17]))
+
 # Returns the probability of a characteristic for a specified dog breed
+# Work in progress - not sure what x is supposed to be
 def pCharacteristic(x, mean, sd):
-    # Not sure what x is supposed to be, for now I put it as P(breed)
     variance = float(sd)**2
     denom = (2*math.pi*variance)**0.5
     num = math.exp(-(float(x)-float(mean))**2/(2*variance))
     return num/denom
-
 # Testing
 #print(pCharacteristic(Beagle.probability, Beagle.girth[0], Beagle.girth[1]))
 
