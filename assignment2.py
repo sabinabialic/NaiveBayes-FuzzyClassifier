@@ -86,15 +86,21 @@ print(naive_bayes_classifier([59, 32, 17]))
 # Input is a three element list with [girth, height, weight]
 def fuzzy_classifier(input):
     # Fuzzy membership function
-    def f(x):
-        return 'unimplemented'
+    def f(x, a, b, c, d):
+        if ((x <= a) or (d <= x)) : return 0
+        elif ((a < x) and (x < b)) : return (x-a)/(b-a)
+        elif ((b <= x) and (x <= c)) : return 1
+        elif ((c < x) and (x < d)) : return (d-x)/(d-c)
 
     # Returns the highest membership class, either "beagle", "corgi", "husky", or "poodle"
-    def highest_membership_class():
+    def highest_membership_class(input):
         return 'unimplemented'
 
     # Returns the membership in each class in the order [beagle probability, corgi probability, husky probability, poodle probability]
-    def class_memberships():
+    def class_memberships(input):
         return ['beagle', 'corgi', 'husky', 'poodle']
 
-    return highest_membership_class, class_memberships
+    return highest_membership_class(input), class_memberships(input)
+
+# Testing
+print(fuzzy_classifier([59, 32, 17]))
