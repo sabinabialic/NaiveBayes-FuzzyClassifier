@@ -56,7 +56,7 @@ class Weight:
 # Work in progress - something is off with the numbers
 def naive_bayes_classifier(input):
     def pNaiveBayes(breed, chars):
-        return "{:.16f}".format(stats.norm.pdf(chars[0], breed.girth[0], breed.girth[1])
+        return "{:.20f}".format(stats.norm.pdf(chars[0], breed.girth[0], breed.girth[1])
                               * stats.norm.pdf(chars[1], breed.height[0], breed.height[1])
                               * stats.norm.pdf(chars[2], breed.weight[0], breed.weight[1])
                               * breed.probability)
@@ -84,6 +84,7 @@ def naive_bayes_classifier(input):
 
 # Testing
 print(naive_bayes_classifier([59, 32, 17]))
+print(naive_bayes_classifier([65, 55, 30]))
 
 
 # Input is a three element list with [girth, height, weight]
