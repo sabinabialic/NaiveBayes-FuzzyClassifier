@@ -52,17 +52,17 @@ def naive_bayes_classifier(input):
     # Work in progress - something is off with the numbers
     # P(girth = char[0] | breed) * P(height = char[1] | breed) * P(weight = char[2]| breed) * P(breed)
     def pNaiveBayes(breed, chars):
-        return (stats.norm.pdf(chars[0], breed.girth[0], breed.girth[1])
-              * stats.norm.pdf(chars[1], breed.height[0], breed.height[1])
-              * stats.norm.pdf(chars[2], breed.weight[0], breed.weight[1])
-              * breed.probability)
+        return "{:.16f}".format(stats.norm.pdf(chars[0], breed.girth[0], breed.girth[1])
+                              * stats.norm.pdf(chars[1], breed.height[0], breed.height[1])
+                              * stats.norm.pdf(chars[2], breed.weight[0], breed.weight[1])
+                              * breed.probability)
 
     # Returns the probability of each class in the order [beagle probability, corgi probability, husky probability, poodle probability]
     def class_probabilities(input):
-        pBeagle = "{:.16f}".format(pNaiveBayes(Beagle, input))       # P(Beagle | input)
-        pCorgi  = "{:.16f}".format(pNaiveBayes(Corgi, input))        # P(Corgi | input)
-        pHusky  = "{:.16f}".format(pNaiveBayes(Husky, input))        # P(Husky | input)
-        pPoodle = "{:.16f}".format(pNaiveBayes(Poodle, input))       # P(Poodle | input)
+        pBeagle = pNaiveBayes(Beagle, input)       # P(Beagle | input)
+        pCorgi  = pNaiveBayes(Corgi, input)        # P(Corgi | input)
+        pHusky  = pNaiveBayes(Husky, input)        # P(Husky | input)
+        pPoodle = pNaiveBayes(Poodle, input)       # P(Poodle | input)
         return [pBeagle, pCorgi, pHusky, pPoodle]
 
     # Returns the most likely class, either "beagle", "corgi", "husky", or "poodle"
