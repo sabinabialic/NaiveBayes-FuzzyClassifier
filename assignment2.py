@@ -88,7 +88,17 @@ print(naive_bayes_classifier([65, 55, 30]))
 
 
 # Input is a three element list with [girth, height, weight]
+# Rule-Base:
+# if (height = medium and ((girth = small) or (weight = small))) : return beagle
+# if (girth = medium and height = short and weight = medium) : return corgi
+# if (girth = large and height = tall and weight = medium) : return husky
+# if ((girth = medium) or (height = medium) and wight = large) : return poodle
 def fuzzy_classifier(input):
+    # Godel t-norm for fuzzy and
+    def fuzzyAnd(x,y): return min(x,y)
+    # Godel s-norm for fuzzy or
+    def fuzzyOr(x,y): return max(x,y)
+
     # Fuzzy membership function
     def f(x, a, b, c, d):
         if ((x <= a) or (d <= x)) : return 0
@@ -96,13 +106,25 @@ def fuzzy_classifier(input):
         elif ((b <= x) and (x <= c)) : return 1
         elif ((c < x) and (x < d)) : return (d-x)/(d-c)
 
-    # Returns the highest membership class, either "beagle", "corgi", "husky", or "poodle"
-    def highest_membership_class(input):
-        return 'unimplemented'
-
     # Returns the membership in each class in the order [beagle probability, corgi probability, husky probability, poodle probability]
     def class_memberships(input):
-        return ['beagle', 'corgi', 'husky', 'poodle']
+        # Take the crisp result as the element in our universe with the maximum
+        # membership function where mBreed = mGirth U mHeight U mWeight
+        mBeagle = 0
+        mCorgi  = 0
+        mHusky  = 0
+        mPoodle = 0
+        return ['0', '1', '2', '3']
+
+    # Returns the highest membership class, either "beagle", "corgi", "husky", or "poodle"
+    def highest_membership_class(input):
+        # Store the index of the maximum from class_probabilities
+        maximum = np.argmax(class_memberships(input))
+        # Return the corresponding breed
+        if maximum == 0 : return 'beagle'
+        elif maximum == 1 : return 'corgi'
+        elif maximum == 2 : return 'husky'
+        else : return 'poodle'
 
     return highest_membership_class(input), class_memberships(input)
 

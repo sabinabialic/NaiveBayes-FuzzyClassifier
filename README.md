@@ -10,4 +10,8 @@
 
 4.
 
-5
+5.
+
+## Note:
+- Probabilities returned in the naive_bayes_classifier are wrong but the output from the most_likely_class function are correct
+- How to calculate rule strength for fuzzy rule based system?
