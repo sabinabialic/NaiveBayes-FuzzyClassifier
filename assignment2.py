@@ -87,8 +87,8 @@ def naive_bayes_classifier(input):
     return most_likely_class(input), class_probabilities(input)
 
 # Testing
-print(naive_bayes_classifier([59, 32, 17]))
-print(naive_bayes_classifier([65, 55, 30]))
+#print(naive_bayes_classifier([59, 32, 17]))
+#print(naive_bayes_classifier([65, 55, 30]))
 
 
 # Input is a three element list with [girth, height, weight]
@@ -138,6 +138,6 @@ def fuzzy_classifier(input):
     return highest_membership_class(input), class_memberships(input)
 
 # Testing
-print(fuzzy_classifier([59, 32, 17])) #('corgi', [0.0, 0.5333333333333333, 0, 0.0])
-print(fuzzy_classifier([65, 55, 30])) #('poodle', [0.0, 0.0, 0.125, 0.375])
-print(fuzzy_classifier([50, 20, 40])) #('poodle', [0, 0, 0, 1])
+#print(fuzzy_classifier([59, 32, 17])) #('corgi', [0.0, 0.5333333333333333, 0, 0.0])
+#print(fuzzy_classifier([65, 55, 30])) #('poodle', [0.0, 0.0, 0.125, 0.375])
+#print(fuzzy_classifier([50, 20, 40])) #('poodle', [0, 0, 0, 1])
