@@ -40,7 +40,7 @@ class Girth:
 
 class Height:
     # classification = [a, b, c, d]
-    short  = [0, 0, 40, 50]
+    short  = [0, 0, 25, 40]
     medium = [25, 40, 50, 60]
     tall   = [50, 60, 100, 100]
 
@@ -83,38 +83,38 @@ def naive_bayes_classifier(input):
     return most_likely_class(input), class_probabilities(input)
 
 # Testing
-print(naive_bayes_classifier([59, 32, 17]))
-print(naive_bayes_classifier([65, 55, 30]))
+#print(naive_bayes_classifier([59, 32, 17]))
+#print(naive_bayes_classifier([65, 55, 30]))
 
 
 # Input is a three element list with [girth, height, weight]
-# Rule-Base:
-# if (height = medium and ((girth = small) or (weight = small))) : return beagle
-# if (girth = medium and height = short and weight = medium) : return corgi
-# if (girth = large and height = tall and weight = medium) : return husky
-# if ((girth = medium) or (height = medium) and wight = large) : return poodle
 def fuzzy_classifier(input):
-    # Godel t-norm for fuzzy and
-    def fuzzyAnd(x,y): return min(x,y)
-    # Godel s-norm for fuzzy or
-    def fuzzyOr(x,y): return max(x,y)
+    # Gougen t-norm for fuzzy and
+    def t(x,y): return x*y
+    # Gougen s-norm for fuzzy or
+    def s(x,y): return x+y-x*y
 
     # Fuzzy membership function
-    def f(x, a, b, c, d):
-        if ((x <= a) or (d <= x)) : return 0
-        elif ((a < x) and (x < b)) : return (x-a)/(b-a)
-        elif ((b <= x) and (x <= c)) : return 1
-        elif ((c < x) and (x < d)) : return (d-x)/(d-c)
+    def f(x, char):
+        if ((x <= char[0]) or (char[3] <= x)) : return 0
+        elif ((char[0] < x) and (x < char[1])) : return (x-char[0])/(char[1]-char[0])
+        elif ((char[1] <= x) and (x <= char[2])) : return 1
+        elif ((char[2] < x) and (x < char[3])) : return (char[3]-x)/(char[3]-char[2])
 
     # Returns the membership in each class in the order [beagle probability, corgi probability, husky probability, poodle probability]
     def class_memberships(input):
         # Take the crisp result as the element in our universe with the maximum
         # membership function where mBreed = mGirth U mHeight U mWeight
-        mBeagle = 0
-        mCorgi  = 0
-        mHusky  = 0
-        mPoodle = 0
-        return ['0', '1', '2', '3']
+
+        # if (height = medium and ((girth = small) or (weight = light))) : return beagle
+        mBeagle = t(f(input[1], Height.medium), s(f(input[0], Girth.small), f(input[2], Weight.light)))
+        # if (girth = medium and height = short and weight = medium) : return corgi
+        mCorgi  = t(f(input[0], Girth.medium), t(f(input[1], Height.short), f(input[2], Weight.medium)))
+        # if (girth = large and height = tall and weight = medium) : return husky
+        mHusky  = t(f(input[0], Girth.large), t(f(input[1], Height.tall), f(input[2], Weight.medium)))
+        # if ((girth = medium) or (height = medium) and weight = heavy) : return poodle
+        mPoodle = t(s(f(input[0], Girth.medium), f(input[1], Height.medium)), f(input[2], Weight.heavy))
+        return [mBeagle, mCorgi, mHusky, mPoodle]
 
     # Returns the highest membership class, either "beagle", "corgi", "husky", or "poodle"
     def highest_membership_class(input):
@@ -130,3 +130,4 @@ def fuzzy_classifier(input):
 
 # Testing
 print(fuzzy_classifier([59, 32, 17]))
+print(fuzzy_classifier([65, 55, 30]))
