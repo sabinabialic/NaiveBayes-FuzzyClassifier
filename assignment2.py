@@ -52,11 +52,12 @@ class Weight:
 
 # Input is a three element list with [girth, height, weight]
 # Returns the Naive Bayes probability for a specified dog breed using the following formula:
-# P(girth = char[0] | breed) * P(height = char[1] | breed) * P(weight = char[2]| breed) * P(breed)
-# Work in progress - something is off with the numbers
-def pFormat(input): return float("{:.8f}".format(float(input)))
-
 def naive_bayes_classifier(input):
+    # Format num as a float
+    def pFormat(num): return float("{:.8f}".format(float(num)))
+
+    # Returns the numerator for Naive Bayes formula
+    # P(girth = char[0] | breed) * P(height = char[1] | breed) * P(weight = char[2]| breed) * P(breed)
     def pNaiveBayes(breed, chars):
         return pFormat(stats.norm.pdf(chars[0], breed.girth[0], breed.girth[1])
                      * stats.norm.pdf(chars[1], breed.height[0], breed.height[1])
@@ -70,8 +71,8 @@ def naive_bayes_classifier(input):
         pCorgi  = pNaiveBayes(Corgi, input)       # P(Corgi | input)
         pHusky  = pNaiveBayes(Husky, input)       # P(Husky | input)
         pPoodle = pNaiveBayes(Poodle, input)      # P(Poodle | input)
-        total = pBeagle + pCorgi + pHusky + pPoodle
 
+        total = pBeagle + pCorgi + pHusky + pPoodle
         return [pBeagle/total, pCorgi/total, pHusky/total, pPoodle/total]
 
     # Returns the most likely class, either "beagle", "corgi", "husky", or "poodle"
