@@ -56,7 +56,7 @@ class Weight:
 # Work in progress - something is off with the numbers
 def naive_bayes_classifier(input):
     def pNaiveBayes(breed, chars):
-        return "{:.20f}".format(stats.norm.pdf(chars[0], breed.girth[0], breed.girth[1])
+        return "{:.100f}".format(stats.norm.pdf(chars[0], breed.girth[0], breed.girth[1])
                               * stats.norm.pdf(chars[1], breed.height[0], breed.height[1])
                               * stats.norm.pdf(chars[2], breed.weight[0], breed.weight[1])
                               * breed.probability)
@@ -68,6 +68,7 @@ def naive_bayes_classifier(input):
         pCorgi  = pNaiveBayes(Corgi, input)        # P(Corgi | input)
         pHusky  = pNaiveBayes(Husky, input)        # P(Husky | input)
         pPoodle = pNaiveBayes(Poodle, input)       # P(Poodle | input)
+        # print("B: {}, C: {}, H: {}, P: {}".format(pBeagle, pCorgi, pHusky, pPoodle))
         return [pBeagle, pCorgi, pHusky, pPoodle]
 
     # Returns the most likely class, either "beagle", "corgi", "husky", or "poodle"
@@ -80,11 +81,19 @@ def naive_bayes_classifier(input):
         elif maximum == 2 : return 'husky'
         else : return 'poodle'
 
-    return most_likely_class(input), class_probabilities(input)
+    list_of_raw_values = class_probabilities(input)
+    total = 0
+    for item in list_of_raw_values:
+        total += float(item)
+    list_of_class_probabilities = []
+    for item in list_of_raw_values:
+        list_of_class_probabilities.append(float(item)/total)
+
+    return most_likely_class(input), list_of_class_probabilities
 
 # Testing
-#print(naive_bayes_classifier([59, 32, 17]))
-#print(naive_bayes_classifier([65, 55, 30]))
+print(naive_bayes_classifier([59, 32, 17]))
+print(naive_bayes_classifier([65, 55, 30]))
 
 
 # Input is a three element list with [girth, height, weight]
