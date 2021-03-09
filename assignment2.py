@@ -94,6 +94,11 @@ def fuzzy_classifier(input):
     # Gougen s-norm for fuzzy or
     def s(x,y): return x+y-x*y
 
+    # Godel t-norm for fuzzy and
+    #def t(x,y): return max(x,y)
+    # Godel s-norm for fuzzy or
+    #def s(x,y): return min(x,y)
+
     # Fuzzy membership function
     def f(x, char):
         if ((x <= char[0]) or (char[3] <= x)) : return 0
@@ -129,5 +134,6 @@ def fuzzy_classifier(input):
     return highest_membership_class(input), class_memberships(input)
 
 # Testing
-print(fuzzy_classifier([59, 32, 17]))
-print(fuzzy_classifier([65, 55, 30]))
+print(fuzzy_classifier([59, 32, 17])) #('corgi', [0.0, 0.5333333333333333, 0, 0.0])
+print(fuzzy_classifier([65, 55, 30])) #('poodle', [0.0, 0.0, 0.125, 0.375])
+print(fuzzy_classifier([50, 20, 40])) #('poodle', [0, 0, 0, 1])  
