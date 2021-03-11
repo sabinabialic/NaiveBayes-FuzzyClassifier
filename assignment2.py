@@ -51,12 +51,11 @@ class Weight:
     heavy  = [20, 40, 100, 100]
 
 # Input is a three element list with [girth, height, weight]
-# Returns the Naive Bayes probability for a specified dog breed using the following formula:
 def naive_bayes_classifier(input):
     # Format num as a float
     def pFormat(num): return float("{:.8f}".format(float(num)))
 
-    # Returns the numerator for Naive Bayes formula
+    # Returns the Naive Bayes probability for a specified dog breed given the following formula:
     # P(girth = char[0] | breed) * P(height = char[1] | breed) * P(weight = char[2]| breed) * P(breed)
     def pNaiveBayes(breed, chars):
         return pFormat(stats.norm.pdf(chars[0], breed.girth[0], breed.girth[1])
@@ -87,11 +86,6 @@ def naive_bayes_classifier(input):
 
     return most_likely_class(input), class_probabilities(input)
 
-# Testing
-#print(naive_bayes_classifier([59, 32, 17]))
-#print(naive_bayes_classifier([65, 55, 30]))
-
-
 # Input is a three element list with [girth, height, weight]
 def fuzzy_classifier(input):
     # Gougen t-norm for fuzzy and
@@ -104,7 +98,7 @@ def fuzzy_classifier(input):
     # Godel s-norm for fuzzy or
     #def s(x,y): return min(x,y)
 
-    # Fuzzy membership function
+    # Returns the fuzzy membership function for a given characteristic and its a, b,c d values
     def f(x, char):
         if ((x <= char[0]) or (char[3] <= x)) : return 0
         elif ((char[0] < x) and (x < char[1])) : return (x-char[0])/(char[1]-char[0])
@@ -113,9 +107,6 @@ def fuzzy_classifier(input):
 
     # Returns the membership in each class in the order [beagle probability, corgi probability, husky probability, poodle probability]
     def class_memberships(input):
-        # Take the crisp result as the element in our universe with the maximum
-        # membership function where mBreed = mGirth U mHeight U mWeight
-
         # if (height = medium and ((girth = small) or (weight = light))) : return beagle
         mBeagle = t(f(input[1], Height.medium), s(f(input[0], Girth.small), f(input[2], Weight.light)))
         # if (girth = medium and height = short and weight = medium) : return corgi
@@ -137,8 +128,3 @@ def fuzzy_classifier(input):
         else : return 'poodle'
 
     return highest_membership_class(input), class_memberships(input)
-
-# Testing
-#print(fuzzy_classifier([59, 32, 17])) #('corgi', [0.0, 0.5333333333333333, 0, 0.0])
-#print(fuzzy_classifier([65, 55, 30])) #('poodle', [0.0, 0.0, 0.125, 0.375])
-#print(fuzzy_classifier([50, 20, 40])) #('poodle', [0, 0, 0, 1])
