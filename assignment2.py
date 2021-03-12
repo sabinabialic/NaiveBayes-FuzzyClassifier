@@ -128,3 +128,10 @@ def fuzzy_classifier(input):
         else : return 'poodle'
 
     return highest_membership_class(input), class_memberships(input)
+
+
+# Printing the output
+# print(naive_bayes_classifier([girth, height, weight]))
+print("Naive Bayes Classifier Output: ", naive_bayes_classifier([59, 32, 17]))
+# print(fuzzy_classifier([girth, height, weight]))
+print("Fuzzy Classifier Output: ", fuzzy_classifier([59, 32, 17]))
